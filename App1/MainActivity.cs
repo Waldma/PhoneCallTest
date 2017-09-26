@@ -2,6 +2,7 @@
 using Android.Widget;
 using Android.OS;
 using System;
+using Android.Content;
 
 namespace App1
 {
@@ -39,6 +40,24 @@ namespace App1
                     callButton.Text = "Call" + translatedNumber;
                     callButton.Enabled = true;
                 }
+            };
+
+            callButton.Click += (object sender, EventArgs e) =>
+            {
+                //on "Call" button click, try to dial phone number.
+                var callDialog = new AlertDialog.Builder(this);
+                callDialog.SetMessage("Call " + translatedNumber + "?");
+                callDialog.SetNeutralButton("Call", delegate
+                {
+                    //Create intent to dial phone
+                    var callIntent = new Intent(Intent.ActionCall);
+                    callIntent.SetData(Android.Net.Uri.Parse("tel:" + translatedNumber));
+                    StartActivity(callIntent);
+                });
+                callDialog.SetNegativeButton("Cancel", delegate { });
+
+                //Show the alert dialog to the user and wait for response
+                callDialog.Show();
             };
         }
     }
