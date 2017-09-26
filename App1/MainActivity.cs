@@ -6,7 +6,7 @@ using Android.Content;
 
 namespace App1
 {
-    [Activity(Label = "App1", MainLauncher = true, Icon ="@drawable/icon")]
+    [Activity(Label = "Phoneword (App1 tegelt)", MainLauncher = true, Icon ="@drawable/Icon")]
     public class MainActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
